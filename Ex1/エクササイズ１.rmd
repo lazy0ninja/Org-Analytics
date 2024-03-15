@@ -86,7 +86,8 @@ ggraph(graph, layout = "fr") +
 
 
 # What do we see in the network?
-It is clear that most of the connections are from McGill University and Desautels Faculty of Management take very concentrated
-which means they take a lot of space in my network.
 
+- The network is very dense for McGill and Desautels, with many connections between people. (I did not manually color MMA cohorts but just chose to filter by the McGill name)
+- If "Company" columns could contain historical data such as where we have worked, the plot would show much more interesting interactions between us.
+- At the same time we have many single node without any connections. This is expected as we receive many random invitations from people we don't know on LinkedIn.
 
