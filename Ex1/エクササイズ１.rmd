@@ -1,0 +1,92 @@
+---
+title: "Exercise1"
+output: pdf_document
+---
+
+Read the data
+
+```{r}
+library(tidyverse)
+df <- read_csv("Connections.csv")
+```
+
+
+Get the count of contancts by their current employer + total count
+```{r}
+count_by_emp <- df %>%
+  group_by(Company) %>%
+  summarise(count = n()) %>%
+  arrange(desc(count))
+
+# total count
+total_count <- df %>%
+  summarise(count = n())
+
+print(count_by_emp)
+print(total_count)
+```
+
+
+Create nodes and edges dataframe to use with igraph (use tidygraph)
+```{r}
+library(tidygraph)
+library(igraph)
+
+
+# rename columns
+df <- df %>%
+  rename(First = `First Name`)
+df <- df %>%
+  rename(Last = `Last Name`)
+
+# create label as a combination of first and first letter of last name
+df <- df %>%
+  mutate(label = paste(First, substr(Last, 1, 1), sep = " "))
+
+```
+
+
+
+If we color "McGill" differently...
+
+```{r}
+library(ggraph)
+
+df <- df %>%
+        mutate(color = case_when(
+                Company == "McGill University" ~ "red",
+                Company == "McGill University - Desautels Faculty of Management" ~ "green",
+                TRUE ~ "blue"
+        ))
+
+nodes <- df %>%
+        select(name = label, color)
+
+edges <- expand.grid(from = df$label, to = df$label) %>%
+        left_join(df, by = c("from" = "label")) %>%
+        rename(from_company = Company) %>%
+        left_join(df, by = c("to" = "label")) %>%
+        rename(to_company = Company) %>%
+        filter(from_company == to_company, from != to) %>%
+        select(from, to) %>%
+        distinct()
+
+
+# Use the modified nodes dataframe to create the tbl_graph
+graph <- tbl_graph(nodes = nodes, edges = edges, directed = FALSE)
+
+# Plot with color differentiation
+ggraph(graph, layout = "fr") +
+        geom_edge_link() +
+        geom_node_point(aes(color = color), size = 5) +
+        geom_node_text(aes(label = name, filter = name == "McGill University"), repel = TRUE) +
+        scale_color_identity() +
+        theme_void()
+```
+
+
+# What do we see in the network?
+It is clear that most of the connections are from McGill University and Desautels Faculty of Management take very concentrated
+which means they take a lot of space in my network.
+
+
