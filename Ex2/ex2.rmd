@@ -3,7 +3,7 @@ title: "Network Analysis and Centrality Measures"
 output: md_document
 ---
 
-```{r setup, include=FALSE}
+```{r setup, include=T}
 knitr::opts_chunk$set(echo = TRUE)
 library(tidyverse)
 library(igraph)
