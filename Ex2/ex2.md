@@ -129,7 +129,7 @@
     # Plot the graph
     plot(graph, layout = layout_nicely(graph), vertex.color = "skyblue", edge.arrow.size = 0.5)
 
-![](/Users/kaz/DataspellProjects/Org-Analytics/Ex2/ex2_files/figure-markdown_strict/unnamed-chunk-2-1.png)
+![img.png](img.png)
 
     # Calculate degree centrality for all nodes
     degree_centrality <- degree(graph, mode = "all")
@@ -293,6 +293,6 @@ rest of the network, and they are not in the middle of the network.
     # Resetting to default single plotting layout
     par(mfrow = c(1, 1))
 
-![](/Users/kaz/DataspellProjects/Org-Analytics/Ex2/ex2_files/figure-markdown_strict/unnamed-chunk-5-1.png)
+![img_1.png](img_1.png)
 
     par(mai = c(0, 0, 0.5, 0.5))
