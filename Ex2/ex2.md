@@ -296,4 +296,3 @@ rest of the network, and they are not in the middle of the network.
 ![](/Users/kaz/DataspellProjects/Org-Analytics/Ex2/ex2_files/figure-markdown_strict/unnamed-chunk-5-1.png)
 
     par(mai = c(0, 0, 0.5, 0.5))
-
