@@ -10,6 +10,7 @@ library(igraph)
 library(kableExtra)
 ```
 
+
 ```{r}
 # Create a blank matrix
 adjacency_matrix <- matrix(0, nrow=10, ncol=10)
@@ -111,38 +112,6 @@ Centrality Measures for Seats A-D
 
 
 
-
-### Seat A
-- **Key Feature**: Highest betweenness centrality, lowest degree centrality.
-- **Benefit**: Sitting in Seat A positions you as a key bridge in the network, connecting different coworker groups. This is beneficial for meeting diverse individuals --> can offer broad insights into the company culture and cross-departmental projects.
-- **Drawback**: The lower degree centrality means you might have fewer direct connections, potentially making it harder to quickly form a close-knit group of friends.
-
-### Seat B
-- **Key Feature**: High degree and closeness centrality.
-- **Benefit**: access to a larger direct network and easier communication with others due to the high closeness centrality, facilitating exchange of information and support.
-- **Drawback**: the focus here is less on being the sole connector and more on being part of a cohesive network, which might **limit exclusive networking**.
-
-### Seat C
-- **Key Feature**: Similar to Seat B.
-
-### Seat D
-- **Key Feature**: High degree and closeness centrality but lowest betweenness centrality.
-- **Benefit**: Similar to B and C
-- **Drawback**: The lowest betweenness centrality = less ideal for those looking to play a bridging role between unconnected coworker groups (less networkhub role).
-
-**In Summary**:
-- **For broad networking across diverse groups**: **Seat A**
-- **For quickly establishing a strong, central presence in your immediate network**: **Seats B, C, and D**
-
-
-**What if...**
-- if you want to make the strongest bond with one person in the bus, where should you sit, assuming every seat is available?
--  1 or 2
-- they have the least number of connections, they are far from the rest of the network, and they are not in the middle of the network.
-
-> If you choose 1, then 2 is your only bet and 2 has more "opportunities". So if you want to make the strongest connection, you would sit in seat 2 and only talk to the person in seat 1.
-
-
 ```{r}
 degree_centrality <- degree(graph, mode = "all")
 closeness_centrality <- closeness(graph, mode = "all")
@@ -179,6 +148,36 @@ plot(graph, layout = layout,
      main = "Betweenness Centrality")
 
 # Resetting to default single plotting layout
-par(mfrow = c(1, 1))
-par(mai = c(0, 0, 0.5, 0.5))
 ```
+
+
+
+### Seat A
+- **Key Feature**: Highest betweenness centrality, lowest degree centrality.
+- **Benefit**: Sitting in Seat A positions you as a key bridge in the network, connecting different coworker groups. This is beneficial for meeting diverse individuals --> can offer broad insights into the company culture and cross-departmental projects.
+- **Drawback**: The lower degree centrality means you might have fewer direct connections, potentially making it harder to quickly form a close-knit group of friends.
+
+### Seat B
+- **Key Feature**: High degree and closeness centrality.
+- **Benefit**: access to a larger direct network and easier communication with others due to the high closeness centrality, facilitating exchange of information and support.
+- **Drawback**: the focus here is less on being the sole connector and more on being part of a cohesive network, which might **limit exclusive networking**.
+
+### Seat C
+- **Key Feature**: Similar to Seat B.
+
+### Seat D
+- **Key Feature**: High degree and closeness centrality but lowest betweenness centrality.
+- **Benefit**: Similar to B and C
+- **Drawback**: The lowest betweenness centrality = less ideal for those looking to play a bridging role between unconnected coworker groups (less networkhub role).
+
+**In Summary**:
+- **For broad networking across diverse groups**: **Seat A**
+- **For quickly establishing a strong, central presence in your immediate network**: **Seats B, C, and D**
+
+
+**What if...**
+- if you want to make the strongest bond with one person in the bus, where should you sit, assuming every seat is available?
+-  1 or 2
+- they have the least number of connections, they are far from the rest of the network, and they are not in the middle of the network.
+
+> If you choose 1, then 2 is your only bet and 2 has more "opportunities". So if you want to make the strongest connection, you would sit in seat 2 and only talk to the person in seat 1.
